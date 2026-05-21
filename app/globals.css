@@ -1,27 +1,189 @@
+/*
+ * globals.css — サイト全体に適用するスタイルシート
+ *
+ * このファイルは layout.tsx で import されており、
+ * すべてのページに自動的に適用されます。
+ *
+ * Tailwind CSS の読み込みと、カスタムのグローバルスタイルを書く場所です。
+ */
+
+/* ==============================
+   Tailwind CSS の読み込み
+   ============================== */
+
+/* @tailwind base：ブラウザのデフォルトスタイルをリセットする基本スタイル */
 @tailwind base;
+
+/* @tailwind components：Tailwind が提供するコンポーネント用スタイル */
 @tailwind components;
+
+/* @tailwind utilities：flex, p-4, text-center などのユーティリティクラス群 */
 @tailwind utilities;
 
+
+/* ==============================
+   CSS カスタムプロパティ（変数）
+   ============================== */
+
+/* :root はページ全体に影響するルート要素（<html>）のスタイル */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* 背景色（白）*/
+  --foreground: #171717; /* 文字色（ほぼ黒）*/
 }
 
+/* ライトモード・ダークモードの切り替え */
+/* prefers-color-scheme: dark はOSがダークモードのときに適用される */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0a; /* ダークモードの背景色（ほぼ黒）*/
+    --foreground: #ededed; /* ダークモードの文字色（ほぼ白）*/
   }
 }
 
+/* body：ページ全体の本文スタイル */
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--foreground);       /* 文字色に CSS 変数を使用 */
+  background: var(--background);  /* 背景色に CSS 変数を使用 */
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ==============================
+   カスタムユーティリティクラス
+   ============================== */
+
+/* @layer utilities：Tailwind のユーティリティ層にカスタムクラスを追加 */
 @layer utilities {
+  /* text-balance：テキストの折り返しをバランスよくする */
   .text-balance {
     text-wrap: balance;
   }
 }
+
+/* ==============================
+   アニメーション定義
+   ============================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatingAnimation {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ==============================
+   アニメーション適用クラス
+   ============================== */
+
+@layer components {
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-fadeInScale {
+    animation: fadeInScale 0.5s ease-out;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-floating {
+    animation: floatingAnimation 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  /* ホバー時のスムーズ効果 */
+  .smooth-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* グラデーション背景のアニメーション */
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+

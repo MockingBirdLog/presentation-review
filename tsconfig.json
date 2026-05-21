@@ -1,26 +1,72 @@
 {
+  /**
+   * tsconfig.json — TypeScript の設定ファイル
+   *
+   * TypeScript がどのように JavaScript に変換（コンパイル）するかを指定します。
+   * Next.js が自動生成するファイルなので、基本的に変更する必要はありません。
+   */
+
   "compilerOptions": {
+    // ==============================
+    // 使用するライブラリの指定
+    // ==============================
+    // dom：ブラウザの機能（document, window など）が使えるようになる
+    // esnext：最新の JavaScript 機能が使えるようになる
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // JavaScript ファイル（.js）も TypeScript として扱う
     "allowJs": true,
+
+    // node_modules の型チェックをスキップ（ビルドを速くするため）
     "skipLibCheck": true,
+
+    // 厳格モード：型の安全性を最大化する（null チェックなど）
     "strict": true,
+
+    // TypeScript は型チェックのみ行い、.js ファイルは Next.js が生成する
     "noEmit": true,
+
+    // import/export の互換性を高める設定
     "esModuleInterop": true,
+
+    // モジュールの形式を ESNext（最新の ES モジュール）にする
     "module": "esnext",
+
+    // モジュールの解決方法：Next.js のバンドラーに任せる
     "moduleResolution": "bundler",
+
+    // .json ファイルを import できるようにする
     "resolveJsonModule": true,
+
+    // ファイルを個別にコンパイルできるようにする（高速化）
     "isolatedModules": true,
+
+    // JSX の処理を Next.js に任せる（"preserve" = そのまま渡す）
     "jsx": "preserve",
+
+    // 前回のコンパイル結果を再利用してビルドを速くする
     "incremental": true,
+
+    // Next.js のプラグインを有効にする（エディタの補完機能などに使われる）
     "plugins": [
       {
         "name": "next"
       }
     ],
+
+    // ==============================
+    // パスエイリアスの設定
+    // ==============================
+    // "@/components/Button" のように書けば "./components/Button" と同じ意味になる
+    // 深くネストしたフォルダからの import が読みやすくなる
     "paths": {
       "@/*": ["./*"]
     }
   },
+
+  // TypeScript がチェックするファイルの範囲
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+
+  // チェックしないフォルダ（node_modules は他のパッケージなので対象外）
   "exclude": ["node_modules"]
 }
