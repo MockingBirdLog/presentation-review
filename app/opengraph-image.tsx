@@ -8,6 +8,8 @@
 
 import { ImageResponse } from "next/og";
 
+export const runtime = "nodejs";
+
 // OG 画像のサイズ（SNS 標準サイズ）
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

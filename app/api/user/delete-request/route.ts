@@ -37,10 +37,10 @@ export async function POST(request: Request) {
       return Response.json({ error: "パスワードが必要です" }, { status: 400 });
     }
 
-    const { error: signInError } = await supabase.auth.signInWithPassword(
-      user.email!,
-      password
-    );
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: user.email!,
+      password: password,
+    });
 
     if (signInError) {
       return Response.json({ error: "パスワードが正しくありません" }, { status: 401 });

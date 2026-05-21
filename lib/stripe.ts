@@ -8,9 +8,7 @@
 import Stripe from "stripe";
 
 // Stripe クライアントの初期化（サーバー側でのみ使う）
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-});
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // ==============================
 // プランの定義

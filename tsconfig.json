@@ -41,6 +41,9 @@
     // ファイルを個別にコンパイルできるようにする（高速化）
     "isolatedModules": true,
 
+    // Map や Set などのイテレータを古い JavaScript に変換できるようにする
+    "downlevelIteration": true,
+
     // JSX の処理を Next.js に任せる（"preserve" = そのまま渡す）
     "jsx": "preserve",
 

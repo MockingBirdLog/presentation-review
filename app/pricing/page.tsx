@@ -34,7 +34,7 @@ export default async function PricingPage() {
         }
       })
     )
-  ).filter((p) => p !== null) as typeof pricesWithDetails;
+  ).filter((p): p is NonNullable<typeof p> => p !== null);
 
   // ==============================
   // 初回限定プランの購入済みチェック
@@ -94,7 +94,7 @@ export default async function PricingPage() {
               <div
                 key={plan.id}
                 className={`relative bg-white/5 border rounded-2xl p-6 flex flex-col transition-all animate-fadeInUp ${
-                  plan.badge === "人気"
+                  plan.badge === "人気" || plan.badge === "お得"
                     ? "border-blue-400/50 bg-blue-500/10"
                     : "border-white/10 hover:border-white/20"
                 }`}
